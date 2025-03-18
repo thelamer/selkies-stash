@@ -27,7 +27,7 @@ bash build.sh
 
 # Running
 
-This Python example is bare bones along with the client, it expects that you have a way to capture the screen you are capturing from, but after building the module you can just run: 
+This Python example is bare bones along with the client, it expects that you have a way to control the screen you are capturing from, but after building the module you can just run: 
 
 ```
 python3 screen_cap_example.py
