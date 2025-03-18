@@ -286,8 +286,8 @@ public:
         std::vector<int> damage_block_counts(num_stripes, 0);
         std::vector<bool> damage_blocked(num_stripes, false);
         std::vector<int> damage_block_timer(num_stripes, 0);
-        std::vector<int> current_jpeg_qualities(num_stripes); // ADDED: Track current JPEG quality per stripe
-        for (int i = 0; i < num_stripes; ++i) { // Initialize current_jpeg_qualities
+        std::vector<int> current_jpeg_qualities(num_stripes);
+        for (int i = 0; i < num_stripes; ++i) {
             current_jpeg_qualities[i] = current_use_paint_over_quality ? current_paint_over_jpeg_quality : current_jpeg_quality;
         }
 
@@ -380,7 +380,7 @@ public:
                                         std::move(task), i, start_y, current_stripe_height,
                                         screen_width, capture_height_actual, capture_width_actual,
                                         rgb_data.data(), static_cast<int>(rgb_data.size()),
-                                        current_paint_over_jpeg_quality, frame_counter)); // Use paint_over_jpeg_quality for paint-over
+                                        current_paint_over_jpeg_quality, frame_counter));
                                     last_paint_over_hashes[i] = current_hash;
                                     paint_over_sent[i] = true;
                                     frame_encoded = true;
@@ -399,7 +399,7 @@ public:
                                 threads.push_back(std::thread(
                                     std::move(task), i, start_y, current_stripe_height, screen_width,
                                     capture_height_actual, capture_width_actual, rgb_data.data(),
-                                    static_cast<int>(rgb_data.size()), current_jpeg_qualities[i], frame_counter)); // Use current_jpeg_qualities[i]
+                                    static_cast<int>(rgb_data.size()), current_jpeg_qualities[i], frame_counter)); 
                                 previous_hashes[i] = current_hash;
                                 damage_block_counts[i]++;
                                 if (damage_block_counts[i] >= current_damage_block_threshold) {
@@ -414,7 +414,7 @@ public:
                             if (damage_block_timer[i] == 0) {
                                 damage_blocked[i] = false;
                                 damage_block_counts[i] = 0;
-                                current_jpeg_qualities[i] = current_use_paint_over_quality ? current_paint_over_jpeg_quality : current_jpeg_quality; // Reset quality when damage block ends. Consider if this is desired.
+                                current_jpeg_qualities[i] = current_use_paint_over_quality ? current_paint_over_jpeg_quality : current_jpeg_quality;
                             }
                         }
                     }
