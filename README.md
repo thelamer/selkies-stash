@@ -33,7 +33,7 @@ This Python example is bare bones along with the client, it expects that you hav
 python3 screen_cap_example.py
 ```
 
-The server landing page is http://localhost:9000, with ws listening on 9001. This runs only from localhost as in a real deployment this will be behind a proxy with https. 
+The server landing page is http://localhost:9001, with ws listening on 9000. This runs only from localhost as in a real deployment this will be behind a proxy with https. 
 
 The shared object takes configuration parameters IE: 
 
